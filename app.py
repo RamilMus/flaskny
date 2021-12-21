@@ -55,10 +55,10 @@ def create_article():
         try:
             db.session.add(article)
             db.session.commit()
-            return render_template("posts.html", articles=articles)
+            return render_template("posts.html", article=article)
             #return redirect('/')
         except:
-            return render_template("posts.html", articles=articles)
+            return render_template("posts.html", article=article)
             #return "There was a mistake while editig article"
     else:
         return render_template("create-article.html")
