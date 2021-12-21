@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ЧТО, ЗАЧЕМ
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Создайте ваш список</h1>
+    <form method="post">
+        <input type="text" name="title" id="title" class="form-control" placeholder="Article's name"><br>
+        <textarea name="intro" id="intro" class="form-control" placeholder="Intro"></textarea><br>
+        <textarea name="text" id="text" class="form-control" placeholder="Your text here"></textarea><br>
+        <input type="submit" class="btn btn-success" value="Send">
+    </form>
+<div>
+{% endblock %}
