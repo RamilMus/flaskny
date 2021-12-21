@@ -55,7 +55,7 @@ def create_article():
         try:
             db.session.add(article)
             db.session.commit()
-            return redirect('/posts')
+            return redirect('/')
         except:
             return "There was a mistake while editig article"
     else:
