@@ -58,7 +58,8 @@ def create_article():
             return render_template("posts.html", articles=articles)
             #return redirect('/')
         except:
-            return "There was a mistake while editig article"
+            return render_template("posts.html", articles=articles)
+            #return "There was a mistake while editig article"
     else:
         return render_template("create-article.html")
 
