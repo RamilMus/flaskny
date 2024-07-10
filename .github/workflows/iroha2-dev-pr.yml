@@ -1,0 +1,36 @@
+name: I2::Dev::Tests
+
+on:
+  push:
+    branches: [master]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+
+jobs:
+  save-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write Artifact
+        run: echo "Hello world test" > my-artifact
+      - name: Save artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: my-artifact
+      - name: List directory contents
+        if: always()
+        run: pwd && ls -la
+      - name: Print run ID
+        if: always()
+        run: echo ${{ github.run_id }}
+      - name: Download Artifact 
+        uses: actions/download-artifact@v4
+        with:
+            path: mine-artifact
+      - name: Show artifact
+        run: |
+          ls -l mine-artifact/my-artifact
+          cat mine-artifact/my-artifact/my-artifact        

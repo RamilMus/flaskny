@@ -1,0 +1,28 @@
+name: I2::Dev::CodeQuality
+
+on:
+  workflow_run:
+    workflows: ["I2::Dev::Tests"]
+    types: [completed]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.actor }}
+  cancel-in-progress: true
+
+jobs:
+  download-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ls
+        run: pwd && ls -la    
+      - name: Download Artifact 
+        uses: actions/download-artifact@v4
+        with:
+            path: mine-artifact
+            run-id: ${{ github.event.workflow_run.id }}
+      - name: Show artifact
+        run: |
+          ls -l mine-artifact/my-artifact
+          cat mine-artifact/my-artifact/my-artifact 
+      - name: ls
+        run: pwd && ls -la && ls -la mine-artifact
